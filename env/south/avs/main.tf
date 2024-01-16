@@ -1,7 +1,7 @@
 module "resource_group" {
   source = "../../../modules/resource_group"
 
-  for_each                = {for k, v in  var.config["resource_group"] : k => v}
+  for_each                = { for k, v in var.config["resource_group"] : k => v }
   resource_group_name     = each.value
   resource_group_location = var.config["location"]
   default_tags            = local.global_plus_env_tag
@@ -71,7 +71,7 @@ module "storage" {
   default_tags               = local.global_plus_env_tag
   location                   = var.config["location"]
   resource_group_name        = var.config["resource_group"]["pvc"]
-  virtual_network_subnet_ids = values({for k, v in module.subnet : v.subnet_name => v.subnet_id})
+  virtual_network_subnet_ids = values({ for k, v in module.subnet : v.subnet_name => v.subnet_id })
   depends_on                 = [module.resource_group, module.subnet]
 }
 
@@ -87,11 +87,11 @@ module "windows-vm" {
   config                               = local.config_final
   default_tags                         = local.global_plus_env_tag
   # Placeholder for disk encryption.
-  disk_encryption_set_id               = ""
-  provision_vm_agent                   = true
-  resource_group_name                  = var.config["resource_group"]["pvc"]
-  subnet_id                            = lookup({
-    for k, v in module.subnet : v.subnet_name =>v.subnet_id
+  disk_encryption_set_id = ""
+  provision_vm_agent     = true
+  resource_group_name    = var.config["resource_group"]["pvc"]
+  subnet_id = lookup({
+    for k, v in module.subnet : v.subnet_name => v.subnet_id
   }, "jump-box-snet")
   user_assigned_identity = [module.user-assigned-identity.user_assigned_identity_id]
 

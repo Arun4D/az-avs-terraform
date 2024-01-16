@@ -14,11 +14,11 @@ variable "avs_host_count" {}
 
 variable "avs_network_block" {}
 
-variable "nsxt_password" { }
+variable "nsxt_password" {}
 
 variable "vcenter_password" {}
 
-variable "internet_connection_enabled" { default = false}
+variable "internet_connection_enabled" { default = false }
 
 variable "default_tags" {
   type        = map(any)

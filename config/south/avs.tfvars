@@ -1,6 +1,6 @@
 config = {
   location = "northeurope"
-  vnet     = {
+  vnet = {
     name          = "avs-net"
     address_space = ["192.168.1.0/24"]
   }
@@ -12,7 +12,7 @@ config = {
     nsxt_password               = "test"
     vcenter_password            = "test"
     internet_connection_enabled = false
-    cluster                     = {
+    cluster = {
       avs = {
         cluster_node_count = 3
         avs_cluster_sku    = "AV36"
@@ -55,7 +55,7 @@ config = {
         os_disk_size   = "P10"
         data_disk_size = ["P3"]
         license_type   = "Windows_Server"
-        ip_address     = [
+        ip_address = [
           [
             {
               nic_name   = "nic1"
