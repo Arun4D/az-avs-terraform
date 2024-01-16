@@ -1,5 +1,5 @@
 locals {
-  nic_result_values       = {for k, v in azurerm_network_interface.vm_nic : v.name => v.id}
+  nic_result_values       = { for k, v in azurerm_network_interface.vm_nic : v.name => v.id }
   storage_os_disk_size_gb = var.config["disk_size"][local.os_disk_size]
   publisher               = var.config["image"][local.image]["publisher"]
   offer                   = var.config["image"][local.image]["offer"]
@@ -12,7 +12,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   name                  = each.key
   location              = local.location
   resource_group_name   = var.resource_group_name
-  network_interface_ids = values({for k, v in local.nic_result_values : k => v if startswith(k, each.key)})
+  network_interface_ids = values({ for k, v in local.nic_result_values : k => v if startswith(k, each.key) })
   size                  = local.vm_size[index(local.instance_name, each.key) % length(local.vm_size)]
 
   license_type               = local.license_type
@@ -25,10 +25,10 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   # Not enabled for student subscription
   # encryption_at_host_enabled = true
   os_disk {
-    name                   = "${each.key}-os-disk"
-    caching                = "ReadWrite"
-    storage_account_type   = local.os_managed_disk_type
-    disk_size_gb           = local.storage_os_disk_size_gb
+    name                 = "${each.key}-os-disk"
+    caching              = "ReadWrite"
+    storage_account_type = local.os_managed_disk_type
+    disk_size_gb         = local.storage_os_disk_size_gb
 
     #disk_encryption_set_id = var.disk_encryption_set_id
   }

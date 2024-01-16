@@ -1,6 +1,6 @@
 resource "azurerm_network_interface" "vm_nic" {
-  for_each            = {for entry in local.nic_mappings : "${entry.instance_name}-${entry.nic_name}" => entry}
-  name                = "${each.key}"
+  for_each            = { for entry in local.nic_mappings : "${entry.instance_name}-${entry.nic_name}" => entry }
+  name                = each.key
   location            = local.location
   resource_group_name = var.resource_group_name
 
