@@ -10,6 +10,5 @@ resource "nsxt_policy_tier1_gateway" "avs01-tier1-tenant1" {
   enable_standby_relocation = var.enable_standby_relocation
   tier0_path                = var.tier0_path
   route_advertisement_types = var.route_advertisement_types
-  pool_allocation           =  var.pool_allocation
-  tag = var.default_tags
+  pool_allocation           = var.pool_allocation
 }

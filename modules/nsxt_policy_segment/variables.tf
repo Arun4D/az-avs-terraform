@@ -1,3 +1,5 @@
+variable "config" {}
+
 variable "segment_tenant" {
   type    = string
   default = "Unlisted"
@@ -18,5 +20,5 @@ variable "transport_zone_path" {}
 variable "replication_mode" {}
 
 variable "default_tags" {
-  type        = map(any)
+  type = map(any)
 }

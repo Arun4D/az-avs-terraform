@@ -1,3 +1,4 @@
+variable "config" {}
 variable "description" {}
 variable "display_name" {}
 variable "nsx_id" {}
@@ -10,5 +11,5 @@ variable "tier0_path" {}
 variable "route_advertisement_types" {}
 variable "pool_allocation" {}
 variable "default_tags" {
-  type        = map(any)
+  type = map(any)
 }

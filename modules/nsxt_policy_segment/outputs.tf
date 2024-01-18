@@ -1,7 +1,3 @@
-output "express_route_circuit_id" {
-  value = azurerm_express_route_circuit.express_route_circuit.id
-}
-
-output "express_route_circuit_name" {
-  value = azurerm_express_route_circuit.express_route_circuit.name
+output "policy_segment_id" {
+  value = [for l_segment in nsxt_policy_segment.segment : l_segment.id]
 }

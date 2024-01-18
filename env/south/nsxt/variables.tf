@@ -6,11 +6,11 @@ variable "global_tags" {}
 
 variable "global_map" {}
 
-variable "nsx_manager" {}
+/*variable "nsx_manager" {}
 
 variable "nsx_username" {}
 
-variable "nsx_password" {}
+variable "nsx_password" {}*/
 
 data "nsxt_policy_edge_cluster" "EC" {
   display_name = "TNTxx-CLSTR"
