@@ -1,23 +1,14 @@
-#################################################################
-# module variables
-#################################################################
-variable "express_route_circuit_name" {
-  type = string
-}
-variable "express_route_circuit_sku_tier" {
-  type = string
-}
-
-variable "express_route_circuit_sku_family" {
-  type = string
-}
-variable "service_provider_name" {}
-variable "peering_location" {}
-variable "bandwidth_in_mbps" {}
-variable "location" {}
-variable "resource_group_name" {}
-
+variable "description" {}
+variable "display_name" {}
+variable "nsx_id" {}
+variable "edge_cluster_path" {}
+variable "failover_mode" {}
+variable "default_rule_logging" {}
+variable "enable_firewall" {}
+variable "enable_standby_relocation" {}
+variable "tier0_path" {}
+variable "route_advertisement_types" {}
+variable "pool_allocation" {}
 variable "default_tags" {
   type        = map(any)
-  description = "Tag for the azure resources"
 }

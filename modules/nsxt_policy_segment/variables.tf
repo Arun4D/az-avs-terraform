@@ -1,15 +1,22 @@
-variable "description" {}
-variable "display_name" {}
-variable "nsx_id" {}
-variable "edge_cluster_path" {}
-variable "failover_mode" {}
-variable "default_rule_logging" {}
-variable "enable_firewall" {}
-variable "enable_standby_relocation" {}
-variable "tier0_path" {}
-variable "route_advertisement_types" {}
-variable "pool_allocation" {}
+variable "segment_tenant" {
+  type    = string
+  default = "Unlisted"
+}
+
+variable "segment_names" {
+  description = "Segment Names for main.tf"
+  type        = list(string)
+}
+
+variable "segment_IPs" {
+  description = "CIDR Blocks example: 10.100.1.1/24"
+  type        = list(string)
+}
+
+variable "connectivity_path" {}
+variable "transport_zone_path" {}
+variable "replication_mode" {}
+
 variable "default_tags" {
   type        = map(any)
-  description = "Tag for the azure resources"
 }

@@ -23,9 +23,5 @@ terraform init -upgrade
 2. Create a terraform execution plan
 
 ````
-terraform plan -out main.tfplan -var-file="../../../config/global.tfvars" -var-file="../../../config/south/avs.tfvars"
-````
-#### Step2 : Plan
-````
-terraform plan -out main.tfplan -var-file="../../config/south/avs.tfvars"
+terraform plan -out main.tfplan -var-file="../../../config/global.tfvars" -var-file="../../../config/south/nsxt.tfvars"
 ````

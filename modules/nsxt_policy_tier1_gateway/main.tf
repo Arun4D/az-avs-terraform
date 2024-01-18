@@ -1,14 +1,15 @@
-resource "azurerm_express_route_circuit" "express_route_circuit" {
 
-  location              = var.location
-  name                  = var.express_route_circuit_name
-  resource_group_name   = var.resource_group_name
-  service_provider_name = var.service_provider_name
-  peering_location      = var.peering_location
-  bandwidth_in_mbps     = var.bandwidth_in_mbps
-
-  sku {
-    tier   = var.express_route_circuit_sku_tier
-    family = var.express_route_circuit_sku_family
-  }
+resource "nsxt_policy_tier1_gateway" "avs01-tier1-tenant1" {
+  description               = var.description
+  display_name              = var.display_name
+  nsx_id                    = var.nsx_id
+  edge_cluster_path         = var.edge_cluster_path
+  failover_mode             = var.failover_mode
+  default_rule_logging      = var.default_rule_logging
+  enable_firewall           = var.enable_firewall
+  enable_standby_relocation = var.enable_standby_relocation
+  tier0_path                = var.tier0_path
+  route_advertisement_types = var.route_advertisement_types
+  pool_allocation           =  var.pool_allocation
+  tag = var.default_tags
 }

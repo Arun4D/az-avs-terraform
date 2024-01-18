@@ -1,15 +1,20 @@
-
-resource "nsxt_policy_tier1_gateway" "avs01-tier1-tenant1" {
-  description               = var.description
-  display_name              = var.display_name
-  nsx_id                    = var.nsx_id
-  edge_cluster_path         = var.edge_cluster_path
-  failover_mode             = var.failover_mode
-  default_rule_logging      = var.default_rule_logging
-  enable_firewall           = var.enable_firewall
-  enable_standby_relocation = var.enable_standby_relocation
-  tier0_path                = var.tier0_path
-  route_advertisement_types = var.route_advertisement_types
-  pool_allocation           =  var.pool_allocation
-  tag = var.default_tags
+locals {
+  segment_names = {
+    for index, segment in nsxt_policy_segment.segment :
+    segment.display_name => segment.id
+  }
 }
+
+resource "nsxt_policy_segment" "segment" {
+  count               = length(var.segment_names)
+  display_name        = var.segment_names[count.index]
+  description         = "Terraform provisioned Segment"
+  connectivity_path   = var.connectivity_path
+  transport_zone_path = var.transport_zone_path
+  replication_mode =  var.replication_mode
+  subnet {
+    cidr = var.segment_IPs[count.index]
+    # dhcp_ranges = ["10.197.7.193-10.197.7.200"]
+  }
+}
+

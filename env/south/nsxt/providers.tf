@@ -2,23 +2,19 @@ data "azurerm_client_config" "current" {}
 
 terraform {
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0.0"
-    }
-
-    azapi = {
-      source  = "azure/azapi"
-      version = "~>1.1.0"
-    }
-
-    random = {
-      source  = "hashicorp/random"
-      version = "~>3.0"
+    nsxt = {
+      source = "vmware/nsxt"
     }
   }
 }
 
-provider "azurerm" {
-  features {}
+provider "nsxt" {
+  host                  = var.nsx_manager
+  username              = var.nsx_username
+  password              = var.nsx_password
+  allow_unverified_ssl  = true
+  max_retries           = 10
+  retry_min_delay       = 500
+  retry_max_delay       = 5000
+  retry_on_status_codes = [429]
 }
