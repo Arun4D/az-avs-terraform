@@ -53,7 +53,7 @@ module "subnet" {
   address_prefixes     = each.value
   virtual_network_name = module.virtual-network.vnet_name
 
-  depends_on           = [module.virtual-network, module.resource_group]
+  depends_on = [module.virtual-network, module.resource_group]
 
 }
 
