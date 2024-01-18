@@ -43,6 +43,37 @@ config = {
     bastion  = ["192.168.1.64/26"]
     jump-box = ["192.168.1.128/25"]
   }
+  network = {
+    express_route_circuit = {
+      name                  = "avs-erc"
+      service_provider_name = "Equinix"
+      peering_location      = "Washington DC"
+      bandwidth_in_mbps     = 1000
+      sku = {
+        tier   = "Standard"
+        family = "MeteredData"
+      }
+    }
+    peering = {
+      peering_type                  = "AzurePrivatePeering"
+      primary_peer_address_prefix   = "10.0.0.0/30"
+      secondary_peer_address_prefix = "10.0.0.0/30"
+      vlan_id                       = 100
+    }
+    virtual_network_gateway = {
+      name          = "avs-vgw"
+      type          = "ExpressRoute"
+      vpn_type      = "PolicyBased"
+      sku           = "HighPerformance"
+      asn           = 65515
+      active_active = false
+      enable_bgp    = false
+    }
+    virtual_network_gateway_connection = {
+      name = "avs-vgw-con"
+      type = "ExpressRoute"
+    }
+  }
   virtual_machine = {
     dev = {
       jump-box = {
