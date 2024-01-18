@@ -52,7 +52,6 @@ module "subnet" {
   resource_group_name  = var.config["resource_group"]["nw"]
   address_prefixes     = each.value
   virtual_network_name = module.virtual-network.vnet_name
- 
   depends_on           = [module.virtual-network, module.resource_group]
 
 }
